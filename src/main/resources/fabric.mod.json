@@ -12,19 +12,15 @@
   "icon": "assets/zones/icon.png",
   "environment": "server",
   "entrypoints": {
-    "fabric-datagen": [
-      "yeekworld.zones.client.Zones_apiDataGenerator"
-    ],
     "main": [
       "yeekworld.zones.Zones"
+    ],
+    "zones-api": [
+      "yeekworld.zones.api.ZonesAPI"
     ]
   },
   "mixins": [
-    "zones_api.mixins.json",
-    {
-      "config": "zones_api.client.mixins.json",
-      "environment": "client"
-    }
+    "zones_api.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",

@@ -12,9 +12,9 @@ public interface ZonesAPI {
 
     boolean isInZone(Entity entity, Identifier zoneId);
 
-    List<Identifier> getZoneWhereIn(ServerWorld world, BlockPos pos); // NOT OPTIMIZED (не оптимизировано шо пиздец)
+    List<Identifier> getZoneWhereIn(ServerWorld world, BlockPos pos);
 
-    List<Identifier> getZoneWhereIn(Entity entity); // NOT OPTIMIZED (не оптимизировано шо пиздец)
+    List<Identifier> getZoneWhereIn(Entity entity);
 
     Identifier createZone(String zoneName, BlockPos pos1, BlockPos pos2, ServerWorld world);
 

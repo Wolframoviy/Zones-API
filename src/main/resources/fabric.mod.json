@@ -6,7 +6,9 @@
   "description": "Mod implementing zones in the game. This mod allows you to:\n- Create/delete zones\n- Assign names to zones\n- Check for the presence of a entity or position in a zone\n- Get all zones in which a entity/position is located.",
   "authors": ["Wolframoviy"],
   "contact": {
-
+    "sources": "https://github.com/Wolframoviy/Zones-API",
+    "issues": "https://github.com/Wolframoviy/Zones-API/issues,",
+    "discord": "https://discord.gg/MTyZTb3Ent"
   },
   "license": "MIT",
   "icon": "assets/zones/icon.png",

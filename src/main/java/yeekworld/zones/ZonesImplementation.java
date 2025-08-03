@@ -14,7 +14,7 @@ import java.util.List;
 public class ZonesImplementation implements ZonesAPI {
 
     @Override
-    public boolean inInZone(ServerWorld world, BlockPos pos, Identifier zoneId) {
+    public boolean isInZone(ServerWorld world, BlockPos pos, Identifier zoneId) {
         Zone zone = Zones.ZONES.getZone(zoneId);
         return zone != null && zone.contains(pos, world);
     }

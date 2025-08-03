@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import java.util.List;
 
 public interface ZonesAPI {
-    boolean inInZone(ServerWorld world, BlockPos pos, Identifier zoneId);
+    boolean isInZone(ServerWorld world, BlockPos pos, Identifier zoneId);
 
     boolean isInZone(Entity entity, Identifier zoneId);
 

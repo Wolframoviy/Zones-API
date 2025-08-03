@@ -63,9 +63,7 @@ public class ZonesCommands {
                 case "overworld" -> key = World.OVERWORLD;
                 case "the_nether" -> key = World.NETHER;
                 case "the_end" -> key = World.END;
-                default -> {
-                    throw WORLD_DOESNT_EXIST.create();
-                }
+                default -> throw WORLD_DOESNT_EXIST.create();
             }
             ServerWorld world = Zones.SERVER.getWorld(key);
             assert world != null;
@@ -111,20 +109,18 @@ public class ZonesCommands {
 
         context.getSource().sendFeedback(() -> Text.literal("======= Zone list: =======").formatted(Formatting.BLUE), false);
 
-        zones.forEach((zoneId, zone) -> {
-            context.getSource().sendFeedback(() -> Text.literal(
-                    String.format("%s: from %d %d %d to %d %d %d in %s",
-                            zoneId.getPath(),
-                            zone.pos1.getX(),
-                            zone.pos1.getY(),
-                            zone.pos1.getZ(),
-                            zone.pos2.getX(),
-                            zone.pos2.getY(),
-                            zone.pos2.getZ(),
-                            zone.zoneWorld.getValue().toString()
-                            )
-            ).formatted(Formatting.AQUA), false);
-        });
+        zones.forEach((zoneId, zone) -> context.getSource().sendFeedback(() -> Text.literal(
+                String.format("%s: from %d %d %d to %d %d %d in %s",
+                        zoneId.getPath(),
+                        zone.pos1.getX(),
+                        zone.pos1.getY(),
+                        zone.pos1.getZ(),
+                        zone.pos2.getX(),
+                        zone.pos2.getY(),
+                        zone.pos2.getZ(),
+                        zone.zoneWorld.getValue().toString()
+                        )
+        ).formatted(Formatting.AQUA), false));
 
         context.getSource().sendFeedback(() -> Text.literal("=======================").formatted(Formatting.BLUE), false);
 
@@ -144,9 +140,7 @@ public class ZonesCommands {
 
     public static final SuggestionProvider<ServerCommandSource> SUGGEST_ZONES = (context, buider) -> {
 
-        Zones.ZONES.getZones().forEach((zoneId, zone) -> {
-            buider.suggest(zoneId.getPath());
-        });
+        Zones.ZONES.getZones().forEach((zoneId, zone) -> buider.suggest(zoneId.getPath()));
 
         return buider.buildFuture();
     };

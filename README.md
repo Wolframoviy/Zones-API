@@ -15,7 +15,7 @@ This API serves as a foundation for implementing more complex features such as:
 - Zone identification via unique `Identifier` objects
 - Membership checks based on either **position** or **entity**
 
-ZoneManager does not implement high-level behaviors on its own — instead, it is intended to be integrated into larger systems or extended as needed. It provides the basic spatial logic upon which other features can be built.
+Zones API does not implement high-level behaviors on its own — instead, it is intended to be integrated into larger systems or extended as needed. It provides the basic spatial logic upon which other features can be built.
 
 
 

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "zones_api",
+  "version": "${version}",
+  "name": "Zones API",
+  "description": "Mod implementing zones in the game. This mod allows you to:\n- Create/delete zones\n- Assign names to zones\n- Check for the presence of a entity or position in a zone\n- Get all zones in which a entity/position is located.",
+  "authors": ["Wolframoviy"],
+  "contact": {
+
+  },
+  "license": "MIT",
+  "icon": "assets/zones/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "fabric-datagen": [
+      "yeekworld.zones.client.Zones_apiDataGenerator"
+    ],
+    "main": [
+      "yeekworld.zones.Zones"
+    ]
+  },
+  "mixins": [
+    "zones_api.mixins.json",
+    {
+      "config": "zones_api.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

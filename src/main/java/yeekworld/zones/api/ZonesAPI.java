@@ -4,19 +4,32 @@ import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import yeekworld.zones.ZonesImplementation;
 
 import java.util.List;
 
-public interface ZonesAPI {
-    boolean isInZone(ServerWorld world, BlockPos pos, Identifier zoneId);
+public class ZonesAPI {
+    static boolean isInZone(ServerWorld world, BlockPos pos, Identifier zoneId) {
+        return ZonesImplementation.isInZone(world, pos, zoneId);
+    }
 
-    boolean isInZone(Entity entity, Identifier zoneId);
+    boolean isInZone(Entity entity, Identifier zoneId) {
+        return ZonesImplementation.isInZone(entity, zoneId);
+    }
 
-    List<Identifier> getZoneWhereIn(ServerWorld world, BlockPos pos);
+    List<Identifier> getZoneWhereIn(ServerWorld world, BlockPos pos) {
+        return ZonesImplementation.getZoneWhereIn(world, pos);
+    }
 
-    List<Identifier> getZoneWhereIn(Entity entity);
+    List<Identifier> getZoneWhereIn(Entity entity) {
+        return ZonesImplementation.getZoneWhereIn(entity);
+    }
 
-    Identifier createZone(String zoneName, BlockPos pos1, BlockPos pos2, ServerWorld world);
+    Identifier createZone(String zoneName, BlockPos pos1, BlockPos pos2, ServerWorld world) {
+        return ZonesImplementation.createZone(zoneName, pos1, pos2, world);
+    }
 
-    void removeZone(Identifier zoneId);
+    void removeZone(Identifier zoneId) {
+        ZonesImplementation.removeZone(zoneId);
+    }
 }

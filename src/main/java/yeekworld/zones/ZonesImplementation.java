@@ -5,22 +5,19 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import yeekworld.zones.api.ZonesAPI;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ZonesImplementation implements ZonesAPI {
+public class ZonesImplementation{
 
-    @Override
-    public boolean isInZone(ServerWorld world, BlockPos pos, Identifier zoneId) {
+    public static boolean isInZone(ServerWorld world, BlockPos pos, Identifier zoneId) {
         Zone zone = Zones.ZONES.getZone(zoneId);
         return zone != null && zone.contains(pos, world);
     }
 
-    @Override
-    public boolean isInZone(Entity entity, Identifier zoneId) {
+    public static boolean isInZone(Entity entity, Identifier zoneId) {
         Zone zone = Zones.ZONES.getZone(zoneId);
 
         World world = entity.getWorld();
@@ -29,8 +26,7 @@ public class ZonesImplementation implements ZonesAPI {
         return zone != null && zone.contains(pos, world);
     }
 
-    @Override
-    public List<Identifier> getZoneWhereIn(ServerWorld world, BlockPos pos) {
+    public static List<Identifier> getZoneWhereIn(ServerWorld world, BlockPos pos) {
 
         List<Identifier> res = new ArrayList<>();
 
@@ -41,8 +37,7 @@ public class ZonesImplementation implements ZonesAPI {
         return res;
     }
 
-    @Override
-    public List<Identifier> getZoneWhereIn(Entity entity) {
+    public static List<Identifier> getZoneWhereIn(Entity entity) {
         World world = entity.getWorld();
         BlockPos pos = entity.getBlockPos();
 
@@ -55,8 +50,7 @@ public class ZonesImplementation implements ZonesAPI {
         return res;
     }
 
-    @Override
-    public Identifier createZone(String zoneName, BlockPos pos1, BlockPos pos2, ServerWorld world) {
+    public static Identifier createZone(String zoneName, BlockPos pos1, BlockPos pos2, ServerWorld world) {
         Identifier zoneId = Identifier.of(Zones.MOD_ID, zoneName);
         Zone zone = new Zone(pos1, pos2, world);
 
@@ -65,8 +59,7 @@ public class ZonesImplementation implements ZonesAPI {
         return zoneId;
     }
 
-    @Override
-    public void removeZone(Identifier zoneId) {
+    public static void removeZone(Identifier zoneId) {
         Zones.ZONES.removeZone(zoneId);
     }
 }

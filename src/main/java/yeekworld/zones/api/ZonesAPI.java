@@ -9,27 +9,27 @@ import yeekworld.zones.ZonesImplementation;
 import java.util.List;
 
 public class ZonesAPI {
-    static boolean isInZone(ServerWorld world, BlockPos pos, Identifier zoneId) {
+    public static boolean isInZone(ServerWorld world, BlockPos pos, Identifier zoneId) {
         return ZonesImplementation.isInZone(world, pos, zoneId);
     }
 
-    static boolean isInZone(Entity entity, Identifier zoneId) {
+    public static boolean isInZone(Entity entity, Identifier zoneId) {
         return ZonesImplementation.isInZone(entity, zoneId);
     }
 
-    static List<Identifier> getZoneWhereIn(ServerWorld world, BlockPos pos) {
+    public static List<Identifier> getZoneWhereIn(ServerWorld world, BlockPos pos) {
         return ZonesImplementation.getZoneWhereIn(world, pos);
     }
 
-    static List<Identifier> getZoneWhereIn(Entity entity) {
+    public static List<Identifier> getZoneWhereIn(Entity entity) {
         return ZonesImplementation.getZoneWhereIn(entity);
     }
 
-    static Identifier createZone(String zoneName, BlockPos pos1, BlockPos pos2, ServerWorld world) {
+    public static Identifier createZone(String zoneName, BlockPos pos1, BlockPos pos2, ServerWorld world) {
         return ZonesImplementation.createZone(zoneName, pos1, pos2, world);
     }
 
-    static void removeZone(Identifier zoneId) {
+    public static void removeZone(Identifier zoneId) {
         ZonesImplementation.removeZone(zoneId);
     }
 }

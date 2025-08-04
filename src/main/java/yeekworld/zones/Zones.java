@@ -5,6 +5,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.MinecraftServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +36,7 @@ public class Zones implements ModInitializer {
             dispatcher.register(literal("zones")
                     .executes(ZonesCommands::rootCommand)
                     .then(literal("create")
+                            .requires(source -> source.hasPermissionLevel(2))
                             .then(argument("zone name", StringArgumentType.string())
                             .then(argument("x1", IntegerArgumentType.integer())
                             .then(argument("y1", IntegerArgumentType.integer())
@@ -42,7 +44,6 @@ public class Zones implements ModInitializer {
                             .then(argument("x2", IntegerArgumentType.integer())
                             .then(argument("y2", IntegerArgumentType.integer())
                             .then(argument("z2", IntegerArgumentType.integer())
-                            .requires(source -> source.hasPermissionLevel(2))
                             .executes(context -> ZonesCommands.createZone(
                                     context,
                                     StringArgumentType.getString(context, "zone name"),
@@ -55,6 +56,7 @@ public class Zones implements ModInitializer {
                                 )))))))))
                     )
                     .then(literal("create")
+                            .requires(source -> source.hasPermissionLevel(2))
                             .then(argument("zone name", StringArgumentType.string())
                             .then(argument("x1", IntegerArgumentType.integer())
                             .then(argument("y1", IntegerArgumentType.integer())
@@ -63,7 +65,6 @@ public class Zones implements ModInitializer {
                             .then(argument("y2", IntegerArgumentType.integer())
                             .then(argument("z2", IntegerArgumentType.integer())
                             .then(argument("world", StringArgumentType.string()).suggests(ZonesCommands.SUGGEST_WORLD_NAMES)
-                            .requires(source -> source.hasPermissionLevel(2))
                             .executes(context -> ZonesCommands.createZone(
                                     context,
                                     StringArgumentType.getString(context, "zone name"),
@@ -77,15 +78,45 @@ public class Zones implements ModInitializer {
                             ))))))))))
                     )
                     .then(literal("remove")
-                            .then(argument("zone name", StringArgumentType.string()).suggests(ZonesCommands.SUGGEST_ZONES)
                             .requires(source -> source.hasPermissionLevel(2))
+                            .then(argument("zone name", StringArgumentType.string()).suggests(ZonesCommands.SUGGEST_ZONES)
                             .executes(context -> ZonesCommands.removeZone(
                                     context,
                                     StringArgumentType.getString(context, "zone name")
                             ))))
                     .then(literal("list")
                             .requires(source -> source.hasPermissionLevel(2))
-                            .executes(ZonesCommands::getZones))
+                            .executes(ZonesCommands::getZones)
+                    )
+                    .then(literal("check")
+                            .requires(source -> source.hasPermissionLevel(2))
+                            .then(argument("zone name", StringArgumentType.string()).suggests(ZonesCommands.SUGGEST_ZONES)
+                            .then(argument("x", IntegerArgumentType.integer())
+                            .then(argument("y", IntegerArgumentType.integer())
+                            .then(argument("z", IntegerArgumentType.integer())
+                            .executes(context -> ZonesCommands.checkZone(
+                                    context,
+                                    StringArgumentType.getString(context, "zone name"),
+                                    IntegerArgumentType.getInteger(context, "x"),
+                                    IntegerArgumentType.getInteger(context, "y"),
+                                    IntegerArgumentType.getInteger(context, "z")
+                            ))
+                            .then(argument("world", StringArgumentType.string()).suggests(ZonesCommands.SUGGEST_WORLD_NAMES)
+                            .executes(context -> ZonesCommands.checkZone(
+                                    context,
+                                    StringArgumentType.getString(context, "zone name"),
+                                    IntegerArgumentType.getInteger(context, "x"),
+                                    IntegerArgumentType.getInteger(context, "y"),
+                                    IntegerArgumentType.getInteger(context, "z"),
+                                    StringArgumentType.getString(context, "world")
+                            ))))))
+                            .then(argument("entity", EntityArgumentType.entity())
+                            .executes(context -> ZonesCommands.checkZone(
+                                    context,
+                                    StringArgumentType.getString(context, "zone name"),
+                                    EntityArgumentType.getEntity(context, "entity")
+                            ))))
+                    )
             );
         });
     }

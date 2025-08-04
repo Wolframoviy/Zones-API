@@ -26,7 +26,7 @@ public class ZonesImplementation implements ZonesAPI {
         World world = entity.getWorld();
         BlockPos pos = entity.getBlockPos();
 
-        return zone.contains(pos, world);
+        return zone != null && zone.contains(pos, world);
     }
 
     @Override

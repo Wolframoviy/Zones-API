@@ -12,54 +12,71 @@ import java.util.List;
 
 public class ZonesImplementation{
 
-    public static boolean isInZone(ServerWorld world, BlockPos pos, Identifier zoneId) {
-        Zone zone = Zones.ZONES.getZone(zoneId);
-        return zone != null && zone.contains(pos, world);
+    public static boolean isInZone(Object world, Object pos, Object zoneId) {
+        if (world instanceof ServerWorld serverWorld && pos instanceof BlockPos bPos && zoneId instanceof Identifier id) {
+            Zone zone = Zones.ZONES.getZone(id);
+            return zone != null && zone.contains(bPos, serverWorld);
+        }
+        throw new IllegalArgumentException();
     }
 
-    public static boolean isInZone(Entity entity, Identifier zoneId) {
-        Zone zone = Zones.ZONES.getZone(zoneId);
+    public static boolean isInZone(Object entity, Object zoneId) {
+        if (entity instanceof Entity mcEntity && zoneId instanceof Identifier id) {
+            Zone zone = Zones.ZONES.getZone(id);
 
-        World world = entity.getWorld();
-        BlockPos pos = entity.getBlockPos();
+            World world = mcEntity.getWorld();
+            BlockPos pos = mcEntity.getBlockPos();
 
-        return zone != null && zone.contains(pos, world);
+            return zone != null && zone.contains(pos, world);
+        }
+        throw new IllegalArgumentException();
     }
 
-    public static List<Identifier> getZoneWhereIn(ServerWorld world, BlockPos pos) {
+    public static List<Object> getZoneWhereIn(Object world, Object pos) {
+        if (world instanceof ServerWorld serverWorld && pos instanceof BlockPos bPos) {
+            List<Object> res = new ArrayList<>();
 
-        List<Identifier> res = new ArrayList<>();
+            Zones.ZONES.getZones().forEach((zoneId, zone) -> {
+                if (zone.contains(bPos, serverWorld)) res.add(zoneId);
+            });
 
-        Zones.ZONES.getZones().forEach((zoneId, zone) -> {
-            if (zone.contains(pos, world)) res.add(zoneId);
-        });
-
-        return res;
+            return res;
+        }
+        throw new IllegalArgumentException();
     }
 
-    public static List<Identifier> getZoneWhereIn(Entity entity) {
-        World world = entity.getWorld();
-        BlockPos pos = entity.getBlockPos();
+    public static List<Object> getZoneWhereIn(Object entity) {
+        if (entity instanceof Entity mcEntity) {
+            World world = mcEntity.getWorld();
+            BlockPos pos = mcEntity.getBlockPos();
 
-        List<Identifier> res = new ArrayList<>();
+            List<Object> res = new ArrayList<>();
 
-        Zones.ZONES.getZones().forEach((zoneId, zone) -> {
-            if (zone.contains(pos, world)) res.add(zoneId);
-        });
+            Zones.ZONES.getZones().forEach((zoneId, zone) -> {
+                if (zone.contains(pos, world)) res.add(zoneId);
+            });
 
-        return res;
+            return res;
+        }
+        throw new IllegalArgumentException();
     }
 
-    public static Identifier createZone(String zoneName, BlockPos pos1, BlockPos pos2, ServerWorld world) {
-        Identifier zoneId = Identifier.of(Zones.MOD_ID, zoneName);
-        Zone zone = new Zone(pos1, pos2, world);
+    public static Object createZone(String zoneName, Object pos1, Object pos2, Object world) {
+        if (pos1 instanceof BlockPos bPos1 && pos2 instanceof BlockPos bPos2 && world instanceof ServerWorld serverWorld){
+            Identifier zoneId = Identifier.of(Zones.MOD_ID, zoneName);
+            Zone zone = new Zone(bPos1, bPos2, serverWorld);
 
-        Zones.ZONES.addZone(zoneId, zone);
+            Zones.ZONES.addZone(zoneId, zone);
 
-        return zoneId;
+            return zoneId;
+        }
+        throw new IllegalArgumentException();
     }
 
-    public static void removeZone(Identifier zoneId) {
-        Zones.ZONES.removeZone(zoneId);
+    public static void removeZone(Object zoneId) {
+        if (zoneId instanceof Identifier id) {
+            Zones.ZONES.removeZone(id);
+        }
+        throw new IllegalArgumentException();
     }
 }

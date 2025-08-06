@@ -23,6 +23,8 @@ Zones API does not implement high-level behaviors on its own — instead, it is 
 
 ## API Reference
 
+## packager com.yeekworld.zones.ZonesAPI
+
 ## `isInZone(ServerWorld world, BlockPos pos, Identifier zoneId)`
 
 Checks whether a specific block position is within a given zone.

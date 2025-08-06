@@ -23,7 +23,7 @@ Zones API does not implement high-level behaviors on its own — instead, it is 
 
 ## API Reference
 
-## packager com.yeekworld.zones.ZonesAPI
+## package com.yeekworld.zones.api.ZonesAPI
 
 ## `isInZone(ServerWorld world, BlockPos pos, Identifier zoneId)`
 

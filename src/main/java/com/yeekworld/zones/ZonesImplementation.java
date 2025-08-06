@@ -15,7 +15,9 @@ public class ZonesImplementation{
     public static boolean isInZone(Object world, Object pos, Object zoneId) {
         if (world instanceof ServerWorld serverWorld && pos instanceof BlockPos bPos && zoneId instanceof Identifier id) {
             Zone zone = Zones.ZONES.getZone(id);
-            return zone != null && zone.contains(bPos, serverWorld);
+
+            if (zone == null) return false;
+            return zone.contains(bPos, serverWorld);
         }
         throw new IllegalArgumentException();
     }
@@ -27,7 +29,8 @@ public class ZonesImplementation{
             World world = mcEntity.getWorld();
             BlockPos pos = mcEntity.getBlockPos();
 
-            return zone != null && zone.contains(pos, world);
+            if (zone == null) return false;
+            return zone.contains(pos, world);
         }
         throw new IllegalArgumentException();
     }

@@ -1,4 +1,4 @@
-package yeekworld.zones;
+package com.yeekworld.zones;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

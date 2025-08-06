@@ -1,6 +1,6 @@
-package yeekworld.zones.api;
+package com.yeekworld.zones.api;
 
-import yeekworld.zones.ZonesImplementation;
+import com.yeekworld.zones.ZonesImplementation;
 
 import java.util.List;
 

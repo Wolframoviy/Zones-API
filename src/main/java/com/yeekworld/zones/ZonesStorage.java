@@ -1,4 +1,4 @@
-package yeekworld.zones;
+package com.yeekworld.zones;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.server.MinecraftServer;

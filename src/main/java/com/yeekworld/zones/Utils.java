@@ -1,4 +1,4 @@
-package yeekworld.zones;
+package com.yeekworld.zones;
 
 import net.fabricmc.loader.api.ModContainer;
 import net.fabricmc.loader.api.FabricLoader;

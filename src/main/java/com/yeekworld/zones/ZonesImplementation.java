@@ -1,4 +1,4 @@
-package yeekworld.zones;
+package com.yeekworld.zones;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;

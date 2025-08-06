@@ -15,10 +15,10 @@
   "environment": "server",
   "entrypoints": {
     "main": [
-      "yeekworld.zones.Zones"
+      "com.yeekworld.zones.Zones"
     ],
     "zones-api": [
-      "yeekworld.zones.api.ZonesAPI"
+      "com.yeekworld.zones.api.ZonesAPI"
     ]
   },
   "mixins": [

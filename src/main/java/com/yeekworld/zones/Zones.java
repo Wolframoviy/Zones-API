@@ -1,4 +1,4 @@
-package yeekworld.zones;
+package com.yeekworld.zones;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;

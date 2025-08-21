@@ -25,6 +25,8 @@ Zones API does not implement high-level behaviors on its own — instead, it is 
 
 ## package com.yeekworld.zones.api.ZonesAPI
 
+### Add dependency via JitPack: https://jitpack.io/#Wolframoviy/Zones-API (use modImplementation instead of implementation)
+
 ## `isInZone(ServerWorld world, BlockPos pos, Identifier zoneId)`
 
 Checks whether a specific block position is within a given zone.
